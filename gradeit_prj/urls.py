@@ -23,4 +23,5 @@ urlpatterns = [
     path('',include('gradeit_app.urls')),
     url(r'^accounts/register',app_views.register_user,name='register_user' ),
     url(r'^accounts/login/$',app_views.user_login,name='user_login'),
+    url(r'^logout/$', app_views.user_logout, name='user_logout'),
 ]
