@@ -4,6 +4,7 @@ from pyuploadcare.dj.models import ImageField
 import datetime as dt
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import statistics
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -122,9 +123,10 @@ class Rating(models.Model):
     def save_rating(self):
         self.save()
 
+
     @classmethod
     def get_project_ratings(cls, id):
-        ratings = Rating.objects.filter(post_id=id).all()
+        ratings = Rating.objects.filter(project_id=id).all()
         return ratings
 
     def __str__(self):

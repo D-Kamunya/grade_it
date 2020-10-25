@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Project
+from .models import Project,Rating
 from django.contrib.auth.models import User
 # Create your tests here.
 class ProjectTestClass(TestCase):
@@ -64,4 +64,42 @@ class ProjectTestClass(TestCase):
         self.assertTrue(len(projects) > 0)
 
 
-       
+
+
+class RatingTestClass(TestCase):
+
+    # Set up method
+    def setUp(self):
+        # Creating a new location and saving it
+        self.new_user=User(username='denno',email='a@gmail.com',password='qwerty1234')
+        self.new_user.save()
+        
+        self.new_project= Project(user=self.new_user,title='Pizza Shop',url='https://localhost:8000',description='This ia a django test description',technologies='Django')
+        self.new_project.save()
+
+        self.new_rating=Rating(user=self.new_user,project=self.new_project,design=5,usability=8,content=7,score=6.67)
+        self.new_rating.save()
+
+    # Tear Down method
+    def tearDown(self):
+        Rating.objects.all().delete()
+        Project.objects.all().delete()
+        User.objects.all().delete()
+
+    # Testing  instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.new_rating,Rating))    
+
+    # Testing Save Method
+    def test_save_method(self):
+        self.new_rating1= Rating(user=self.new_user,project=self.new_project,design=5,usability=8,content=7,score=6.67)
+        self.new_rating1.save_rating()
+        ratings = Rating.objects.all()
+        self.assertTrue(len(ratings) == 2)  
+
+    # Testing get_project_ratings Method
+    def test_get_project_ratings_method(self):
+        self.new_rating1= Rating(user=self.new_user,project=self.new_project,design=5,usability=8,content=7,score=6.67)
+        self.new_rating1.save_rating()
+        ratings = Rating.get_project_ratings(self.new_project.id)
+        self.assertTrue(len(ratings) == 2)    
