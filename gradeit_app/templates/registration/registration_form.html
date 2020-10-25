@@ -6,14 +6,14 @@
   {% endblock %}
 {% block content %}
 
-<div class="card content">
+<div class="card m-auto content">
   <div class="card-body">
     <div class="text-center">
       {% if form.errors %}
       <p style="color: red;"> Some Information Might be Incorrect </p>
       {% endif %}
     </div>
-    <h6 class="card-title"><a>Register to continue</a> <span style="float:right">Are you a member? <a href="{%url 'user_login'%}" class="text-info">Login now</a></span></h5>
+    <h6 class="card-title"><span>Register to continue</span> <span style="float:right">Are you a member? <a href="{%url 'user_login'%}" class="text-info">Login now</a></span></h5>
     <form  method="post">
       {% csrf_token %}
       {% bootstrap_form form%}

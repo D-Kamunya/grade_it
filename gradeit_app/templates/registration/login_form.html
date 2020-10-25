@@ -4,9 +4,9 @@
   <link rel="stylesheet" href="{%static 'css/auth.css'%}">
   {% endblock %}
 {%block content%}
-<div class="card content">
+<div class="card m-auto content">
     <div class="card-body">
-        <h6 class="card-title"><a>Sign in to continue</a> <span style="float:right">Not a member yet? <a href="{%url 'register_user'%}" class="text-info">Register now</a></span></h5>
+        <h6 class="card-title"><span class="align-left">Sign in to continue</span> <span style="float:right">Not a member yet? <a href="{%url 'register_user'%}" class="text-info">Register now</a></span></h5>
         <form class="form-signin" method="POST">
             {% csrf_token %}
             <label for="username" class="sr-only">Username</label>
