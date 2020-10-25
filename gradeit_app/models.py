@@ -96,4 +96,36 @@ class Project(models.Model):
       return projects
 
   
+class Rating(models.Model):
+    rating = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6, '6'),
+        (7, '7'),
+        (8, '8'),
+        (9, '9'),
+        (10, '10'),
+    )
 
+    design = models.IntegerField(choices=rating,  blank=True)
+    usability = models.IntegerField(choices=rating, blank=True)
+    content = models.IntegerField(choices=rating, blank=True)
+    score = models.FloatField(blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    upload_date = models.DateTimeField(auto_now_add=True)
+
+
+    def save_rating(self):
+        self.save()
+
+    @classmethod
+    def get_project_ratings(cls, id):
+        ratings = Rating.objects.filter(post_id=id).all()
+        return ratings
+
+    def __str__(self):
+        return self.id
