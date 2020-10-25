@@ -10,7 +10,7 @@ class Profile(models.Model):
     profile_photo = ImageField(blank=True, manual_crop="")
     bio = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=60, blank=True)
-    contact = models.IntegerField(max_length=10, blank=True)
+    contact = models.IntegerField(blank=True)
     create_at=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

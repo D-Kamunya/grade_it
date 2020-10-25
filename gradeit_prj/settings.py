@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'gradeit_app.apps.GradeitAppConfig',
     'bootstrap3',
+    'pyuploadcare.dj',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'gradeit_prj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +69,12 @@ TEMPLATES = [
         },
     },
 ]
+
+
+UPLOADCARE = {
+    'pub_key': 'd7c14bfd7f6cc805b552',
+    'secret': 'caeb603570190c4228f7',
+}
 
 WSGI_APPLICATION = 'gradeit_prj.wsgi.application'
 
