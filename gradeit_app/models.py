@@ -70,7 +70,7 @@ class Project(models.Model):
 
 
     @classmethod
-    def delete_projecr(cls,id):
+    def delete_project(cls,id):
       '''
       Deletes project based on its id
       '''
