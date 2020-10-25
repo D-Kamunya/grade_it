@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url,include
+from gradeit_app import views as app_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('gradeit_app.urls'))
+    path('',include('gradeit_app.urls')),
+    url(r'^accounts/register',app_views.register_user,name='register_user' ),
 ]
