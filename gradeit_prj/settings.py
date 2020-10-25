@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'gradeit_app.apps.GradeitAppConfig',
-    'bootstrap4',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [

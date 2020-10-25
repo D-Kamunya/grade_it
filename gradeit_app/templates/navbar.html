@@ -1,3 +1,8 @@
+{%load static%}
+{% block styles%}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock styles%}
+
 <nav class="mb-1 navbar navbar-expand-lg navbar-light ">
   <a class="navbar-brand" href="{%url 'home_page'%}">Grade it</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
@@ -38,7 +43,7 @@
         </div>
       </li>
       {%else%}
-      <a href="" class="login btn btn-sm btn-info"> REGISTER/LOGIN </a>
+      <a href="{%url 'register_user'%}" class="login btn btn-sm btn-info"> REGISTER/LOGIN </a>
       {%endif%}
       <button class="btn btn-info btn-sm" id="site" data-toggle="modal" data-target=".bd-example-modal-xl">
         Submit your site
