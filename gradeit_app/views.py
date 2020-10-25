@@ -4,9 +4,14 @@ from django.contrib import messages
 from .forms import SignUpForm,ProjectForm
 from django.http  import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
 from django.contrib.auth.decorators import login_required
+from .models import Project
 # Create your views here.
 def home_page(request):
-    return render(request,'index.html')
+    projects=Project.get_all_projects()
+    context={
+        'projects':projects
+    }
+    return render(request,'index.html',context)
 
 
 def register_user(request):
