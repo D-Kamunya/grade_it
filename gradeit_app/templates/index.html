@@ -5,12 +5,14 @@
     {%for project in projects%}
     <div class="mx-auto mb-4 col-md-6 col-lg-4 col-sm-12">
       <div class="card">
+        <a href="{% url 'view_project' project.id %}">
         <div class="post-image" >
           <img src="{{project.cover_photo.cdn_url}}" class="img-fluid" width="100%" style="min-height:160px" />
+        </a>
         </div>
         <div class="card-body pl-3 pr-3">
           <h3 class="m-2 prj-title">
-            <a href="">{{project.title }}</a> <a style="float: right;" href="{{ project.url }}"><i class="fas fa-share-square"></i></a>
+            <a href="{% url 'view_project' project.id %}">{{project.title }}</a> <a style="float: right;" href="{{ project.url }}"><i class="fas fa-share-square"></i></a>
           </h3>   
           <p class="card-text m-2">
           

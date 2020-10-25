@@ -34,3 +34,10 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ('title','description','cover_photo', 'url','technologies')
+
+
+
+class RatingsForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['design', 'usability', 'content']        

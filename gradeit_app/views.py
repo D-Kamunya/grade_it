@@ -79,3 +79,27 @@ def submit_project(request):
     }
 
     return render(request,'new_project.html',context)
+
+
+
+@login_required(login_url='/accounts/login/')
+def view_project(request,prj_id):
+    project = Project.get_project_by_id(prj_id)
+    
+    if request.method == 'POST':
+        form = RatingsForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.user = request.user
+            rate.project = project
+            rate.save()
+
+            return HttpResponseRedirect(request.path_info)
+    else:
+        form = RatingsForm()
+    context = {
+        'project': project,
+        'form': form,
+    }
+
+    return render(request,'project.html',context)    
