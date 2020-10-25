@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect,reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm,ProjectForm
 from django.http  import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home_page(request):
     return render(request,'index.html')
@@ -50,4 +51,19 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse("user_login"))        
+    return HttpResponseRedirect(reverse("user_login"))  
+
+
+
+@login_required(login_url='/accounts/login/')
+def submit_project(request):
+    if request.method == "POST":
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = request.user
+            project.save()
+            messages.success(request, f'Projetc successfully uploaded')
+    else:
+        form = ProjectForm()      
+    return render(request,'new_project.html')
