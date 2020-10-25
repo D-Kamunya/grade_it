@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .forms import SignUpForm
 
 # Create your views here.
 def home_page(request):
