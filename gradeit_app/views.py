@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm,ProjectForm
+from .forms import SignUpForm,ProjectForm,RatingsForm
 from django.http  import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
 from django.contrib.auth.decorators import login_required
 from .models import Project
@@ -92,8 +92,14 @@ def view_project(request,prj_id):
             rate = form.save(commit=False)
             rate.user = request.user
             rate.project = project
+            design=int(request.POST.get("design"))
+            usability=int(request.POST.get("usability"))
+            content=int(request.POST.get("content"))
+            score=round((design+usability+content)/3,2)
+            rate.score=score
+            print(score)
             rate.save()
-
+            messages.success(request, f'You rated this project')
             return HttpResponseRedirect(request.path_info)
     else:
         form = RatingsForm()
