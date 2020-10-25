@@ -130,4 +130,4 @@ class Rating(models.Model):
         return ratings
 
     def __str__(self):
-        return self.id
+        return str(self.id)
