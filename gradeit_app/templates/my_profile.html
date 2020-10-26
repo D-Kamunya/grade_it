@@ -1,5 +1,9 @@
 {%extends 'base.html'%}
-{%load static%}
+{% load bootstrap3 %} 
+{% load static%}
+{%block title%}
+{{form.media }}
+{%endblock%}
 {%block styles%}
 {{block.super}}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}">
@@ -24,13 +28,13 @@
       <div class="col-6 bio">
         <div  class="mb-3 text-center d-flex flex-row">
             <h4 ><strong>{{profile.user.username}}</strong></h4>
-            <a href="" style="color: black;"><button type="button" class="btn btn-primary btn-sm ml-2">Edit Profile</button></a>
+            <button type="button" data-toggle="modal" data-target="#updateprofForm" class="btn btn-primary btn-sm ml-2">Edit Profile</button>
         </div>
 
         {%if profile.bio%}
         <p>{{profile.bio}}</p>
         {%else%}
-        <p>You have no bio.<a href="" >Update</a> </p>
+        <p>You have no bio</p>
         {%endif%}
       </div>
     </div>
@@ -86,6 +90,29 @@
             
           </div>
           {%endif%}
+          <div class="modal fade" id="updateprofForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h4 class="modal-title w-100 font-weight-bold">Update profile </h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body mx-3">
+                  <form  action="" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                
+                    {% bootstrap_form form%}
+
+                </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                      <button type="submit" class="btn btn-default">Update</button>
+                    </div>
+                  </form>
+              </div>
+            </div>
+          </div>
         </div> 
       </div>
       
