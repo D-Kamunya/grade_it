@@ -11,23 +11,20 @@
 
     <div class="card">
       <div class="post-image" style="background-image:url({{project.cover_photo.cdn_url }})" >
-        <div class="prj-ratings" >
+        <div class="prj-ratings text-center" >
           <div class="container mask over rgba-black-slight">
-              <div class="row">
-                  <div class="col-md-6 d-flex flex-row mx-auto" style="height:50vh;margin-top: 20vh;">
-                      <div id="design">{{ratings.design}}<br>
-                          <span class="rates">design</span>
-                      </div>
-                      <div id="usable" class="mx-auto">{{ratings.usability}}<br>
-                          <span class="rates">usability</span>
-                      </div>
-                      <div id="contente">{{ratings.content}}<br>
-                          <span class="rates">content</span>
-                      </div>
-                      <div id="score">{{ratings.score}}<br>
-                        <span class="rates">score</span>
-                      </div>
-                   
+              <div style="height: 50vh;" class="tings d-flex justify-content-center">
+                  <div id="design">{{ratings.design}}<br>
+                      <span class="rates">design</span>
+                  </div>
+                  <div id="usable">{{ratings.usability}}<br>
+                      <span class="rates">usability</span>
+                  </div>
+                  <div id="contente">{{ratings.content}}<br>
+                      <span class="rates">content</span>
+                  </div>
+                  <div id="score">{{ratings.score}}<br>
+                    <span class="rates">score</span>
                   </div>
               </div>
           </div>
@@ -39,7 +36,7 @@
         <div class="card-body">
             <h5 class="card-title"><strong>{{project.title}}</strong>
                 <a href="{{project.url}}" style="float:right" class="btn btn-sm btn-info mr-4"> Visit </a></h5>
-            <p>by <span><a href="" id="username" class="mr-2">{{project.user.username}}</a></span>(Kenya)
+            <p>by <span><a href="" id="username" class="mr-2">{{project.user.username}}</a></span>
             </p>
             <p>{{project.description}}</p>
             <hr>
