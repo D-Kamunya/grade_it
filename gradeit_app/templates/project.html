@@ -42,7 +42,29 @@
             </p>
             <p>{{project.description}}</p>
             <hr>
-            <h5 class="card-title my-3"><strong>Rate Project</strong></h5>
+            <h6 class="card-title my-3"><strong>Project ratings</strong></h6>
+
+            <ul class="list-group list-group-flush">
+              {% for rater in raters %}
+              
+                <li class="list-group-item">
+                  {%if rater.user.profile.cover_photo.cdn_url%}
+                    <img src="{{rater.user.profile.cover_photo.cdn_url}}" class="rounded-circle z-depth-0" alt="avatar image" height="35">
+                  {%else%}
+                    <img src="https://www.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" class="rounded-circle z-depth-0" alt="avatar image" height="35">
+                  {%endif%}
+                  <a class="text-dark" href=""><b class="ml-5">{{ rater.user.username }}</b></a>
+                  <small class="float-right">
+                      <a class='btn btn-sm btn-outline-warning waves-effect' href="">{{rater.design}} <br> Design</a>
+                      <a class='btn btn-sm btn-outline-primary waves-effect' href="">{{rater.usability}}<br> Usability</a>
+                      <a class='btn btn-sm btn-outline-success waves-effect' href="">{{rater.content}}<br> Content</a>
+                      <a class='btn btn-sm btn-outline-danger waves-effect' href="">{{rater.score}}<br> Score</a>
+                  </small>
+                </li>
+              {% endfor %}
+              </ul>
+            <hr>
+            <h6 class="card-title my-3"><strong>Rate Project</strong></h6>
             <form  action="" method="post" enctype="multipart/form-data">
                 {%csrf_token%}
             

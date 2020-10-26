@@ -84,7 +84,6 @@ def submit_project(request):
 
 def get_project_ratings_av(prj_id):
     ratings=Rating.get_project_ratings(prj_id)
-
     if ratings:
         design_ratings = [int(d.design) for d in ratings]
         design_avg = round(sum(design_ratings) / len(design_ratings),2)
@@ -96,7 +95,7 @@ def get_project_ratings_av(prj_id):
         content_avg = round(sum(content_ratings) / len(content_ratings),2)
 
         score_avg = round((design_avg+usability_avg+content_avg)/3,2)
-
+        
         av_ratings={
             'design':design_avg,
             'usability':usability_avg,
@@ -120,6 +119,8 @@ def get_project_ratings_av(prj_id):
 def view_project(request,prj_id):
     project = Project.get_project_by_id(prj_id)
     ratings=get_project_ratings_av(prj_id)
+    raters=Rating.get_project_ratings(prj_id)
+    
     if request.method == 'POST':
         form = RatingsForm(request.POST)
         if form.is_valid():
@@ -139,7 +140,8 @@ def view_project(request,prj_id):
     context = {
         'project': project,
         'form': form,
-        'ratings':ratings
+        'ratings':ratings,
+        'raters':raters
     }
 
     return render(request,'project.html',context)    
