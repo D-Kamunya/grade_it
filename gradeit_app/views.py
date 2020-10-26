@@ -161,4 +161,19 @@ def view_project(request,prj_id):
         'already_rated':already_rated
     }
 
-    return render(request,'project.html',context)    
+    return render(request,'project.html',context)  
+
+
+@login_required(login_url='/accounts/login/')
+def my_profile(request):
+
+  profile=request.user.profile
+  
+  my_projects=Project.filter_by_userid(request.user.id)
+ 
+  context={
+    'profile':profile,
+    'projects':my_projects
+  }
+  return render(request, 'my_profile.html',context)    
+      
