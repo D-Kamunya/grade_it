@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm,ProjectForm,RatingsForm
+from .forms import SignUpForm,ProjectForm,RatingsForm,UserProfileForm
 from django.http  import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
 from django.contrib.auth.decorators import login_required
 from .models import Project,Rating
@@ -167,13 +167,23 @@ def view_project(request,prj_id):
 @login_required(login_url='/accounts/login/')
 def my_profile(request):
 
-  profile=request.user.profile
-  
-  my_projects=Project.filter_by_userid(request.user.id)
- 
-  context={
-    'profile':profile,
-    'projects':my_projects
-  }
-  return render(request, 'my_profile.html',context)    
+    profile=request.user.profile
+    
+    my_projects=Project.filter_by_userid(request.user.id)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Profile updated successfully')
+            return redirect('my_profile')
+    else:
+       form = UserProfileForm(instance=request.user.profile)
+    context={
+        'profile':profile,
+        'projects':my_projects,
+        'form':form
+    }
+    return render(request, 'my_profile.html',context)    
       
