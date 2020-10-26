@@ -6,28 +6,28 @@
 {%endblock%}
 {% block content %}
 <div class="container project_page mt-3">
-    <h5 class="mb-4">{{project.title}} by {{project.user.username}} from Nairobi </h5>
+    <h5 class="text-center mb-4">{{project.title}}</h5>
 
     <div class="card">
-      <div class="post-image" >
-        <img src="{{project.cover_photo}}" width="100%" height="100%"/>
+      <div class="post-image" style="background-image:url({{project.cover_photo.cdn_url }})" >
         <div class="prj-ratings" >
-          <div class="container">
+          <div class="container mask over rgba-black-slight">
               <div class="row">
-                  <div class="col-md-3"></div>
-                  <div class="col-md-6 d-flex flex-row mx-auto" style="margin-top:20%">
-                      <div id="design">0<br>
+                  <div class="col-md-6 d-flex flex-row mx-auto" style="height:50vh;margin-top: 20vh;">
+                      <div id="design">{{ratings.design}}<br>
                           <span class="rates">design</span>
                       </div>
-                      <div id="usable" class="mx-auto">0<br>
+                      <div id="usable" class="mx-auto">{{ratings.usability}}<br>
                           <span class="rates">usability</span>
                       </div>
-                      <div id="contente">0<br>
+                      <div id="contente">{{ratings.content}}<br>
                           <span class="rates">content</span>
+                      </div>
+                      <div id="score">{{ratings.score}}<br>
+                        <span class="rates">score</span>
                       </div>
                    
                   </div>
-                  <div class="col-md-3"></div>
               </div>
           </div>
 
@@ -38,16 +38,11 @@
         <div class="card-body">
             <h5 class="card-title"><strong>{{project.title}}</strong>
                 <a href="{{project.url}}" style="float:right" class="btn btn-sm btn-info mr-4"> Visit </a></h5>
-            <p>by <span><a href="" id="usern" class="mr-2">{{project.user.username}}</a></span>(Kenya)
+            <p>by <span><a href="" id="username" class="mr-2">{{project.user.username}}</a></span>(Kenya)
             </p>
-            <p>{{projetc.description}}</p>
+            <p>{{project.description}}</p>
             <hr>
-            <p class="card-text "><img src="https://www.iconfinder.com/data/icons/user-pictures/100/unknown-512.png" class="rounded-circle z-depth-0"
-              alt="avatar image" width="5%" height="5%">
-                By {{project.user.username}} <span style="float:right">{{project.upload_date|date}}</span>
-            </p>
-         
-
+            <h5 class="card-title my-3"><strong>Rate Project</strong></h5>
             <form  action="" method="post" enctype="multipart/form-data">
                 {%csrf_token%}
             
