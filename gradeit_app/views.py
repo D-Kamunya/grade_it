@@ -120,7 +120,10 @@ def view_project(request,prj_id):
     project = Project.get_project_by_id(prj_id)
     ratings=get_project_ratings_av(prj_id)
     raters=Rating.get_project_ratings(prj_id)
-    
+    already_rated=False
+    for user in raters:
+        if request.user==user.user:
+            already_rated=True
     if request.method == 'POST':
         form = RatingsForm(request.POST)
         if form.is_valid():
@@ -141,7 +144,8 @@ def view_project(request,prj_id):
         'project': project,
         'form': form,
         'ratings':ratings,
-        'raters':raters
+        'raters':raters,
+        'already_rated':already_rated
     }
 
     return render(request,'project.html',context)    

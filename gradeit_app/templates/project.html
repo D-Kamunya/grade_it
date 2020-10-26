@@ -2,6 +2,7 @@
 {%load bootstrap3%}
 {%load static%}
 {%block styles%}
+{{block.super}}
 <link rel="stylesheet" href="{% static 'css/project.css' %}">
 {%endblock%}
 {% block content %}
@@ -45,6 +46,7 @@
             <h6 class="card-title my-3"><strong>Project ratings</strong></h6>
 
             <ul class="list-group list-group-flush">
+              {%if raters%}
               {% for rater in raters %}
               
                 <li class="list-group-item">
@@ -62,9 +64,20 @@
                   </small>
                 </li>
               {% endfor %}
+              {%else%}
+              <li class="list-group-item">
+                <p class="text-muted pl-3">No ratings</p>
+              </li>
+              {%endif%}
               </ul>
             <hr>
             <h6 class="card-title my-3"><strong>Rate Project</strong></h6>
+            {%ifequal project.user request.user%}
+            <div class="alert alert-danger" role="alert">
+              You cannot rate your own project
+            </div>
+            {%else%}
+            {%if not already_rated%}
             <form  action="" method="post" enctype="multipart/form-data">
                 {%csrf_token%}
             
@@ -74,6 +87,12 @@
                 </div>
                 
               </form>
+            {%else%}
+            <div class="alert alert-success" role="alert">
+              You already rated this project
+            </div>
+            {%endif%} 
+            {%endifequal%}   
         </div>
 
     </div>
