@@ -187,3 +187,24 @@ def my_profile(request):
     }
     return render(request, 'my_profile.html',context)    
       
+@login_required(login_url='/accounts/login/')
+def search_projects(request):
+
+    if 'search_project' in request.GET and request.GET["search_project"]:
+        search_term = request.GET.get("search_project")
+        projects =Project.search_project(search_term)
+        message = f"{search_term}"
+        
+        context={
+          "message":message,
+          'projects':projects
+        }
+        return render(request, 'search.html',context)
+
+    else:
+        message = "You haven't searched for any projetc"
+        context={
+          "message":message,
+        }
+        return render(request, 'search.html',context)
+
