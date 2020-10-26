@@ -2,21 +2,21 @@
 {%block content%}
 <div class="site-of-the-day">
   <div id="site-overlay"></div>
-  <h5 class="text-white p-3 pl-5"><strong>Site of the day</strong>,26 October 2020 </h5>
+  <h5 class="text-white p-3 pl-5"><strong>Site of the day</strong>,{{today}} </h5>
   <div class="site text-center">
-    <a href="/project/Picture%20Globe"><h1>Picture Globe</h1> </a>
-    <p class="by">BY <span><a href="" id="username" class="mr-2"><strong>kamunya</strong></a> with <strong>7.89</strong></span></p>
+    <a href="{%url 'view_project' site.id%}"><h1>{{site.title}}</h1> </a>
+    <p class="by">BY <span><a href="" id="username" class="mr-2"><strong>{{site.user.username}}</strong></a> with <strong>{{site_ratings.score}}</strong></span></p>
     <div class="d-flex justify-content-center">
-      <div id="design">0<br>
+      <div id="design">{{site_ratings.design}}<br>
           <span class="rates">design</span>
       </div>
-      <div id="usable">0<br>
+      <div id="usable">{{site_ratings.usability}}<br>
           <span class="rates">usability</span>
       </div>
-      <div id="contente">0 <br>
+      <div id="contente">{{site_ratings.content}} <br>
           <span class="rates">content</span>
       </div>
-      <div id="score">0<br>
+      <div id="score">{{site_ratings.score}}0<br>
         <span class="rates">score</span>
       </div>
    
