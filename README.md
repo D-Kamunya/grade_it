@@ -7,7 +7,7 @@
 ## Description
 This project was generated using Django It allows people to submit their websites/projetcs and have them reviewed based on design,usability and content.Users can also rate other peoples projects
 ## Live link
-Live application can be found at  
+Live application can be found at  https://grade--it.herokuapp.com/
 ## User Story
 As a user, you can:
 1. View posted projects and their details

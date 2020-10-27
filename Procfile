@@ -1,0 +1,1 @@
+web: gunicorn gradeit_prj.wsgi --log-file -
