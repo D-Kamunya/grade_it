@@ -4,6 +4,24 @@ body{
 .home .post-image{
   height: 25vh;
   overflow: hidden;
+  position: relative;
+}
+.home .post-image:hover .vote{
+  opacity: 1;
+}
+.vote{
+  position: absolute; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top:10vh ;
+  background-color: rgba(0,0,0,0.2); /* Black background with opacity */
+  z-index: 1;
+  opacity:0 ;
+  cursor: pointer; 
 }
 .home .prj-title{
   font-size: 14px;

@@ -36,8 +36,13 @@
           <a href="{% url 'view_project' project.id %}">
           <div class="post-image" >
             <img src="{{project.cover_photo.cdn_url}}" class="img-fluid" width="100%" style="min-height:160px" />
-          </a>
+            <div class="vote text-center">
+              <button class="btn btn-info btn-sm" id="site">
+                RATE
+              </button>
+            </div>
           </div>
+          </a>
           <div class="card-body pl-3 pr-3">
             <h3 class="m-2 prj-title">
               <a href="{% url 'view_project' project.id %}">{{project.title }}</a> <a style="float: right;" href="{{ project.url }}"><i class="fas fa-share-square"></i></a>
