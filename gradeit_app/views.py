@@ -4,9 +4,13 @@ from django.contrib import messages
 from .forms import SignUpForm,ProjectForm,RatingsForm,UserProfileForm
 from django.http  import HttpResponse,Http404,HttpResponseRedirect,JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import Project,Rating
+from .models import Project,Rating,Profile
 import datetime
 import random
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer,ProjectsSerializer
 # Create your views here.
 def home_page(request):
     projects=Project.get_all_projects()
@@ -208,3 +212,20 @@ def search_projects(request):
         }
         return render(request, 'search.html',context)
 
+
+
+class ProfileList(APIView):
+    def get(self,request,format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles,many=True)
+        return Response(serializers.data)
+    
+    
+    
+    
+class ProjectsList(APIView):
+    def get(self,request,format=None):
+        all_projects = Project.objects.all()
+        serializers = ProjectsSerializer(all_projects,many=True)
+        return Response(serializers.data)
+    

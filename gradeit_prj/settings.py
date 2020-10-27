@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'gradeit_app.apps.GradeitAppConfig',
     'bootstrap3',
     'pyuploadcare.dj',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
