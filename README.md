@@ -44,9 +44,9 @@ As a user, you can:
     * jQuery 3
 * Google Font API
 
-## API-ENDPOINTS
-* <HOST>/api/profiles  -  List profiles registered with grade it
-* <HOST>/api/projects  -  Returns information pertaining to all the projects posted in grade it
+## API-Endpoints
+* https://grade--it.herokuapp.com/api/profiles  -  List profiles registered with grade it
+* https://grade--it.herokuapp.com/api/projects  -  Returns information pertaining to all the projects posted in grade it
 
 ## Requirements
 * This program requires python3.+ (and pip) installed, a guide on how to install python on various platforms can be found [here](https://www.python.org/)
